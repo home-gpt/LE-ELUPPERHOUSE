@@ -300,7 +300,7 @@
     </div>
 
     <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbx5cOGxe01LEZo-Rg5w-B_xhrKfYBL_9L5EYElQPWiGSOdYEKFinYK9t9_IHtsCh2fT/exec'
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwD47aHeMifbTqfyJ0XQQnzGf4xljDqtkS4cBz_PiDs7ui2ddOjY4ybkpDiw4-I9uo/exec'
     const form = document.forms['submit-form']
 
     // 전화번호 자동 하이픈 추가
@@ -320,9 +320,13 @@
         fetch(scriptURL, { 
             method: 'POST',
             mode: 'no-cors',
-            body: new FormData(form)
+            body: new FormData(form),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
         })
-        .then(() => {
+        .then(response => {
+            console.log('Success!', response)
             alert('문의가 접수되었습니다.')
             form.reset()
         })
