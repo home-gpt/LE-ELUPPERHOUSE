@@ -300,7 +300,7 @@
     </div>
 
     <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwD47aHeMifbTqfyJ0XQQnzGf4xljDqtkS4cBz_PiDs7ui2ddOjY4ybkpDiw4-I9uo/exec'
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxWE1Awcmvy3wSf6QO-pKk3MyM-bQCBg3qQL_Xw0hA41bvGwGOFRL2bhJHMtvk_0luR/exec'
     const form = document.forms['submit-form']
 
     // 전화번호 자동 하이픈 추가
@@ -325,19 +325,13 @@
             data[key] = value;
         });
         
-        // URL 검색 매개변수로 변환
-        const urlParams = new URLSearchParams();
-        Object.keys(data).forEach(key => {
-            urlParams.append(key, data[key]);
-        });
-        
         fetch(scriptURL, { 
             method: 'POST',
             mode: 'no-cors',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/json',
             },
-            body: urlParams.toString()
+            body: JSON.stringify(data)
         })
         .then(response => {
             console.log('Success!', response)
